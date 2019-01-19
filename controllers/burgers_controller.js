@@ -1,20 +1,34 @@
-var express = require ("express");
-var burgers = require ("./models/burgers.js");
+const express = require ("express");
+const router = express.Router()
+const burger = require ("../models/burgers.js");
 
-var router = express.Router()
 
-// middleware that is specific to this router
-router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
-  next()
-})
 // define the home page route
-router.get('/', function (req, res) {
-  res.send('Birds home page')
-})
-// define the about route
-router.get('/about', function (req, res) {
-  res.send('About birds')
+router.GET('/', function (req, res) {
+  burger.all(function(burger_data){
+    // console.log(burger_data);
+    res.render('index',{burger_data});
+
+  })
+  
 })
 
-module.exports = router
+router.PUT('/burgers/update', function (req, res) {
+  burger.update(req.body.burger_id, function(res){
+    console.log(res);
+    res.redirect('/');
+
+  });
+
+});  
+
+router.POST('/burgers/create', function (req, res) {
+  burger.create(req.body.burger_name, function(res){
+    console.log(res);
+    res.redirect('/');
+  
+    });  
+  
+});
+
+module.exports = router;

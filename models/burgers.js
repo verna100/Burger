@@ -1,12 +1,27 @@
-var orm = require("./config/orm.js");
+var orm = require("../config/orm.js");
 
 // select all burgers from table
-orm.selectAll("burger_name", "burgers");
+var burger = {
+    all: function(cb){
+        orm.all("burgers", function(res) {
+    cb(res);
 
-// insert a new burger based on users input
-orm.insertOne("burger_name", "devoured", "bugers");
+        })
+    },
 
-// update burger info
-orm.updateOne("burger_name", "devoured", "burgers");
+    update: function(id, cb){
+        orm.update("burgers", id, cb)
+    cb(res);
+    },
 
-module.exports =orm;
+    create: function(name, cb){
+        orm.create("burgers", name, cb)
+    cb(res);
+    }
+};
+
+
+// // update burger info
+// orm.updateOne("burger_name", "devoured", "burgers");
+    // }
+module.exports = burger;
