@@ -4,28 +4,31 @@ const burger = require ("../models/burgers.js");
 
 
 // define the home page route
-router.GET('/', function (req, res) {
-  burger.all(function(burger_data){
+router.get('/', function (req, res) {
+  burger.selectAll(function(burger_data){
     // console.log(burger_data);
     res.render('index',{burger_data});
 
-  })
+  });
   
-})
+});
 
-router.PUT('/burgers/update', function (req, res) {
-  burger.update(req.body.burger_id, function(res){
-    console.log(res);
-    res.redirect('/');
+router.post('/burgers/update', function (req, res) { 
+
+   burger.create(req.body.name, function(){
+
+    res.redirect('/index');
+
+});
+  // burger.updateOne(req.body.burger_id, function(res){
 
   });
 
-});  
+// });  
 
-router.POST('/burgers/create', function (req, res) {
-  burger.create(req.body.burger_name, function(res){
-    console.log(res);
-    res.redirect('/');
+router.post('/burgers/create/:id', function (req, res) {console.log(res);
+  burger.create(req.body.burger_name, function(){
+    res.redirect('/index');
   
     });  
   
