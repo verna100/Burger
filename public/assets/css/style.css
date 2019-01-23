@@ -1,13 +1,29 @@
 
 
 body{
-  color:pink;
-  background-color: lightslategray;
+  color:black;
+  background-color: rgb(121, 166, 211);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:20px;
 }
 
 
 h1{
-  color:red;
+  color:blueviolet;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size:60px;
+  text-align:center;
+}
+
+h2{
+  text-align: center;
+}
+
+img{
+  height:240px;
+  width:360px;
+  float: right;
+
 }
 
 
