@@ -9,15 +9,28 @@ var burger = {
         })
     },
 
-    update: function(id, cb, res){
-        orm.update("burgers",id, cb);
-        cb(res);
-        },
+    // update: function(id, cb, res){
+    //     orm.update("burgers",id, cb);
+    //     cb(res);
+    //     },
+    update: function(objColVals, condition, cb) {
+        orm.update("burgers", objColVals, condition, function(res) {
+          cb(res);
+        });
+      },
     
-    create: function(name, cb, res){
-        orm.create("burgers", name, cb);
-        cb(res);
-    }
+    
+    // create: function(name, cb, res){
+    //     orm.create("burgers", name, cb);
+    //     cb(res);
+    // }
+
+    create: function(cols, vals, cb) {
+        orm.create("burgers", cols, vals, function(res) {
+          cb(res);
+        });
+      },
+    
 };
 
 

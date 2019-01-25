@@ -11,7 +11,7 @@
     {{#unless this.devoured}}
 </div>
   <div>
-    <pre>{{this.id}}: {{this.burger_name}}</pre>
+    <p>{{this.id}}: {{this.burger_name}}</p>
   </div>
 
   <div>
@@ -32,7 +32,7 @@
     {{#each burger_data}}
       {{#if this.devoured}}
       <p>These are the burgers you have devoured!</p>
-        <input class ="form-control" type = "text" placeholder = "{{this.id}} {{this.burger_name}}" readonly>
+        <input class ="change-devour" type = "text" placeholder = "{{this.id}} {{this.burger_name}}" readonly>
       {{/if}}
     {{/each}}
 
@@ -43,12 +43,13 @@
 <br>
 
 <div>
-  <form action = "/burgers/create" method ="POST">
-    <input type ="text" name = "burger_name" class = "form-control" value = "" id= "enter text"> 
+  {{!-- <form action = "/burgers/create" method ="POST" class ="create-form"> --}}
+    <input type ="text" name = "burger_name" class = "form-control" value = "" id= "new">
+    <p name ="newBurger"></p>
     <button type ="submit" class ="btn btn-primary" id ="text-enter-button">Submit</button>
     <p>Enter the burger you want to devour here above^^^</p>
       
-  </form>
+  {{!-- </form> --}}
 </div>
 
 
