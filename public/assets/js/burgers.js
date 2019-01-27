@@ -1,5 +1,11 @@
-var newBurger;
-var newDevour;
+$(function(){
+  $(".change-devour").on("click", function(event) {
+    var id = $(this).data("id");
+    newDevour = !$(this).data("newdevour");
+
+    newDevourState = {
+      devoured: newDevour
+    };
 
     $("#text-enter-button").on("click", function(event) {
       event.preventDefault();
@@ -9,7 +15,7 @@ var newDevour;
         devoured: 0
       } 
 
-      $.ajax("/burgers/create", {
+      $.ajax("/api/burgers", {
         type: "POST",
         data: newBurger
       }).then(
@@ -20,16 +26,9 @@ var newDevour;
       );
     });
 
-    $(function(){
-    $(".change-devour").on("click", function(event) {
-      var id = $(this).data("id");
-      newDevour = !$(this).data("newdevour");
-  
-      newDevourState = {
-        devoured: newDevour
-      };
+   
 
-      $.ajax("/burgers/update" + id, {
+      $.ajax("/api/burgers/update" + id, {
         type: "PUT",
         data: newDevourState
       }).then(

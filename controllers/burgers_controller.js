@@ -11,13 +11,15 @@ router.get("/", function(req, res) {
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
+  
+  // how to make a promise in javascript. seems like the array is looping through information that hasnt' yet populated.
 });
 
-router.post("/burgers/create", function(req, res) {
+router.post("/api/burgers", function(req, res) {
   burger.create([
     "burger_name", "devoured"
   ], [
-    req.body.name, req.body.devoured
+    req.body, req.body.devoured
   ], function(result) {
     // Send back the ID of the new quote
     res.json({ id: result.insertId });
@@ -25,7 +27,7 @@ router.post("/burgers/create", function(req, res) {
 });
 
 
-router.put("/burgers/update/:id", function(req, res) {
+router.put("/api/burgers/update/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
@@ -41,20 +43,5 @@ router.put("/burgers/update/:id", function(req, res) {
     }
   });
 });
-
-
-router.post('/burgers/create', function (req, res){ 
-  console.log(req.body);
-  // burger.create(req.body.burger_name, function (result){
-  //   console.log(result);
-    res.redirect('/');
-  // }); 
-  
-});
-
-
-
-
-
 
 module.exports = router;

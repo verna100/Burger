@@ -1,32 +1,54 @@
 <h1>Burgers App</h1>
 
-<h2>This app allows you to Devour burgers!</h2>
+<h2>This App allows you to devour burgers!</h2>
 
 <div>
 <img src ="https://cdn.vox-cdn.com/thumbor/oBYDYG_UqNrfI8domD9zI5dNlHk=/0x0:4046x3035/1320x743/filters:focal(0x0:4046x3035):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/47193854/20150915-_Upland_Burger_3.0.0.jpg">
 </div>
 
-<div class ="row">
-  {{#each burger_data}}
-    {{#unless this.devoured}}
-</div>
-  <div>
-    <p>{{this.id}}: {{this.burger_name}}</p>
+<ul>
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{> burgers/burger devoured=true}} 
+       <form method ="POST" action = "/api/burgers?_method= PUT" class = "button-size">
+      <input type = "hidden" name = "burger_name" type ="text" value = {{this.burger_name}}>
+      <br>
+      <button type ="submit" class = "btn btn-default">Devour It.</button> 
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>burgers that are devoured!</h2>
+
+<ul>
+  {{#each burgers}}
+    {{#if devoured}}
+      {{!-- {{> burgers/burger devoured=true} --}}
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a Burger to devour</h2>
+{{!-- <form class="create-form">
+
+  <div class="form-group">
+    <label for="ca">Add a Burger to devour:</label>
+    <input type="text" id="ca" name="name">
   </div>
 
-  <div>
-    <form method ="POST" action = "/burgers/update?_method= PUT" class = "button-size">
-      <input type = "hidden" name = "burger_id" type ="text" value = {{this.id}}>
-      <br>
-      <button type ="submit" class = "btn btn-default">Devour It.</button>
-    
-    
-    </form>
-  {{/unless}}
-{{/each}}
+  <button type="submit">Add  Burger</button>
+</form> --}}
 
-<br>
-<br>
+
+<div>
+  <form action = "/burgers/create" method ="POST" class ="create-form"> 
+    <input type ="text" name = "burger_name" class = "form-control" value = "" id= "new">
+    <p name ="newBurger"></p>
+    <button type ="submit" class ="btn btn-primary" id ="text-enter-button">Submit</button>
+    <p>Enter the burger you want to devour here above^^^</p>
+      
+  </form> 
+</div> 
 
   <div>
     {{#each burger_data}}
@@ -37,20 +59,86 @@
     {{/each}}
 
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- <h1>Burgers App</h1>
+
+<h2>This app allows you to Devour burgers!</h2>
+
+
+
+{{!-- <div class ="row">
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{>burgers/burger devoured=true}}
+</div> --}}
+ 
+
+  {{!-- <div>
+   
+    
+    
+    {{!-- </form>
+  {{/unless}}
+{{/each}} --}}
+
+{{!-- <br>
+<br>
+
+
 </div>
 
 <br>
-<br>
+<br> --}}
 
-<div>
-  {{!-- <form action = "/burgers/create" method ="POST" class ="create-form"> --}}
-    <input type ="text" name = "burger_name" class = "form-control" value = "" id= "new">
-    <p name ="newBurger"></p>
-    <button type ="submit" class ="btn btn-primary" id ="text-enter-button">Submit</button>
-    <p>Enter the burger you want to devour here above^^^</p>
-      
-  {{!-- </form> --}}
-</div>
+
 
 
 
