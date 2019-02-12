@@ -10,7 +10,6 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-// Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
   var arr = [];
   for (var key in ob) {
@@ -25,19 +24,18 @@ function objToSql(ob) {
   return arr.toString();
 }
 
-
+// Object for all our SQL statement functions.
 var orm = {
-  // selectAll()
   all: function(tableInput, cb) {
-     var queryString = 'SELECT * FROM '+tableInput+';'; connection.query(queryString, function (err, result){
+    var queryString = "SELECT * FROM " + tableInput + ";";
+    connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
       cb(result);
-     })
+    });
   },
 
-// insertOne()
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
@@ -50,16 +48,15 @@ var orm = {
 
     console.log(queryString);
 
-  connection.query(queryString, vals, function(err, result) {
-    if (err) {
-      throw err;
-    }
+    connection.query(queryString, vals, function(err, result) {
+      if (err) {
+        throw err;
+      }
 
-    cb(result);
-  });
-},
+      cb(result);
+    });
+  },
 
-// updateOne()
   update: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
@@ -76,7 +73,7 @@ var orm = {
 
       cb(result);
     });
-  },
+  }
 };
 
 module.exports = orm;

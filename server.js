@@ -1,7 +1,8 @@
 var express = require ("express");
 var mysql = require("mysql");
-// var app = express();
-var connection = require("./config/connection.js");
+var bodyParswer = require ("body-parser");
+var connection = require("./config/connection.js")
+var exphbs = require("express-handlebars");
 
 var app = express();
 
@@ -10,13 +11,11 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Use the express.static middleware to serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 // Sets up the Express app to handle data parsing
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-
-var exphbs = require("express-handlebars");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");

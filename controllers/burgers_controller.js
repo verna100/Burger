@@ -2,7 +2,7 @@ var express = require ("express");
 var router = express.Router()
 var burger = require ("../models/burgers.js");
 
-
+// Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
   burger.all(function(data) {
     var hbsObject = {
@@ -11,23 +11,20 @@ router.get("/", function(req, res) {
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
-  
-  // how to make a promise in javascript. seems like the array is looping through information that hasnt' yet populated.
 });
 
 router.post("/api/burgers", function(req, res) {
   burger.create([
     "burger_name", "devoured"
   ], [
-    req.body, req.body.devoured
+    req.body.burger_name, req.body.devoured
   ], function(result) {
     // Send back the ID of the new quote
     res.json({ id: result.insertId });
   });
 });
 
-
-router.put("/api/burgers/update/:id", function(req, res) {
+router.put("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);

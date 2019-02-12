@@ -1,40 +1,43 @@
 
 
 body{
-  color:black;
-  background-color: rgb(121, 166, 211);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size:20px;
 }
 
+body{
+  background-image: url("https://us.123rf.com/450wm/evgeniyorel/evgeniyorel1707/evgeniyorel170700014/83081173-seamless-pattern-with-hamburger-or-burger-fast-food-background-for-banner-restaurant-meal-dinner-san.jpg?ver=6")
+}
 
 h1{
-  color:blueviolet;
+  color:navy;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size:60px;
   text-align:center;
 }
 
 h2{
-  text-align: center;
+  background-color:white;
 }
 
-img{
+/* img{
   height:240px;
   width:360px;
   float: right;
 
-}
+} */
 
 
-/* li {
+li {
     padding: 5px;
     margin: 5px;
-    background: #faebd7;
-  }
+    background:lightblue;
+    font:white;
+  } 
   
   .label {
     font-weight: bold;
+    text-decoration: underline;
   }
   
   .update-form {

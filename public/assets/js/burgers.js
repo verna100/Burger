@@ -1,42 +1,46 @@
-$(function(){
-  $(".change-devour").on("click", function(event) {
+// Make sure we wait to attach our handlers until the DOM is fully loaded.
+$(function() {
+  $(".change-devoured").on("click", function(event) {
     var id = $(this).data("id");
-    newDevour = !$(this).data("newdevour");
+    var newDevoured = $(this).data("newdevoured");
 
-    newDevourState = {
-      devoured: newDevour
+    var newDevouredState = {
+      devoured: newDevoured
     };
 
-    $("#text-enter-button").on("click", function(event) {
-      event.preventDefault();
-  
-        newBurger = {
-        burger_name: $("#new").val().trim(),
-        devoured: 0
-      } 
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: newDevouredState
+    }).then(
+      function() {
+        console.log("changed devoured to", newDevoured);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 
-      $.ajax("/api/burgers", {
-        type: "POST",
-        data: newBurger
-      }).then(
-        function() {
-          console.log("created new Burger");
-          location.reload();
-        }
-      );
-    });
+  $(".create-form").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
 
-   
+    var newBurger = {
+      burger_name: $("#ca").val(),
+      devoured: $("[devoured]:checked").val()
+    };
 
-      $.ajax("/api/burgers/update" + id, {
-        type: "PUT",
-        data: newDevourState
-      }).then(
-        function() {
-          console.log("changed devour status to", newDevour);
-          location.reload();
-        }
-      );
-    });
-    // console.log(newBurger);
-    });
+    // Send the POST request.
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("created new burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+});
+

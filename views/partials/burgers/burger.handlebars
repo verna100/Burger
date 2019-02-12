@@ -1,20 +1,7 @@
- <li>
-
-
-	  {{!-- <div>
-    {{#each burger_data}}
-      {{#if this.devoured}}
-      <p>These are the burgers you have devoured!</p>
-        <input class ="change-devour" type = "text" placeholder = "{{this.id}} {{this.burger_name}}" readonly>
-      {{/if}}
-    {{/each}}
-
-  </div> --}}
+<li>
 	{{burger_name}}
 
 	<button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">
-		{{#if devoured}}devoured {{else}}!{{/if}}
-	</button> 
-
-	{{!-- <button class="delete-cat" data-id="{{this.id}}">DELETE!</button> --}}
-</li> 
+		{{#if devoured}}DEVOUR ME!{{else}}DEVOURED!{{/if}}
+	</button>
+</li>
